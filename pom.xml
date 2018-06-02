@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>com.parisesoftware</artifactId>
+    <artifactId>queue</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -18,7 +18,7 @@
         </plugins>
     </build>
 
-    <groupId>queue</groupId>
+    <groupId>com.parisesoftware</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <name>Queue Data Structure</name>
     <description>Queue Data Structure Implementation</description>
