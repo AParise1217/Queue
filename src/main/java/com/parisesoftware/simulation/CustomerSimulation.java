@@ -1,6 +1,6 @@
 package com.parisesoftware.simulation;
 
-import com.parisesoftware.datastructure.queue.MyQueueClass;
+import com.parisesoftware.datastructure.queue.QueueImpl;
 import com.parisesoftware.model.Customer;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -32,7 +32,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CustomerSimulation {
 	//init global vars
-	private MyQueueClass<Customer> line;
+	private QueueImpl<Customer> line;
 	private int numMinsRemaining;
 	private int minsUntilNextCustomer;
 
@@ -43,7 +43,7 @@ public class CustomerSimulation {
 	private int maxInt;
 	
 	public CustomerSimulation(){ //default constructor
-		line = new MyQueueClass<Customer>(); //creates the queue
+		line = new QueueImpl<Customer>(); //creates the queue
 		numMinsRemaining = 720; //12 hours
 		minsUntilNextCustomer = 0;
 		lineLength = 0;
@@ -52,7 +52,7 @@ public class CustomerSimulation {
 	}
 
 	public CustomerSimulation(int min, int max){
-		line = new MyQueueClass<Customer>(); //creates the queue
+		line = new QueueImpl<Customer>(); //creates the queue
 		numMinsRemaining = 720; //12 hours
 		minsUntilNextCustomer = 0;
 		lineLength = 0;

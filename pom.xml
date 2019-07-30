@@ -177,6 +177,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.parisesoftware</groupId>
+            <artifactId>linkedlist</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>

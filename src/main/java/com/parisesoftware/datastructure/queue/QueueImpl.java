@@ -21,11 +21,11 @@ import com.parisesoftware.model.Node;
  * 
  * 
  */
-public class MyQueueClass<T extends Comparable<T>> {
+public class QueueImpl<T extends Comparable<T>> {
 
 	private ILinkedList<T> linkedList;
 
-	public MyQueueClass(){
+	public QueueImpl(){
 		//default constructor
 		linkedList = new LinkedListImpl<>();
 	}

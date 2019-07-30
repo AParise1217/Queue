@@ -7,13 +7,13 @@ import com.parisesoftware.model.Node;
  * 
  * Mar 4th 2016
  * 
- * Test class to make sure that MyQueueClass.java 's functionality is working
+ * Test class to make sure that QueueImpl.java 's functionality is working
  * 
  */
 public class MyQueueClassTest {
 
 	public static void main(String[] args) {
-		MyQueueClass q = new MyQueueClass();
+		QueueImpl q = new QueueImpl();
 		
 		//Testing .isEmpty()
 		if(q.isEmpty()){
