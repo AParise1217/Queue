@@ -1,46 +1,48 @@
 package com.parisesoftware.model;
 
-/*
+import org.jetbrains.annotations.Contract;
+
+/**
+ * Customer
+ *
+ * <p>Mar 4th 2016 Assignment 5.1 Programming II
+ *
+ * <p>Customer.java
+ *
+ * <p>Contains basic information for the customer object to be referenced in CustomerSimulation.java
+ *
  * @author Andrew Parise
- * Mar 4th 2016
- * Assignment 5.1
- * Programming II
- *
- * Customer.java
- *
- * Contains basic information for the customer object to be referenced in CusomerSimulation.java
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class Customer implements Comparable<Customer> {
 
-	public int timeLeft;
-	public boolean canBeServed;
+  private int timeLeft;
+  private boolean canBeServed;
 
-	public Customer(int timeLeft){
-		this.timeLeft = timeLeft;
-		canBeServed = false;
-	}
+  @Contract(pure = true)
+  public Customer(int timeLeft) {
+    this.timeLeft = timeLeft;
+    canBeServed = false;
+  }
 
-	public int getTime(){
-		return timeLeft;
-	}
+  public int getTime() {
+    return timeLeft;
+  }
 
-	public void minuteGoesBy(){
-		timeLeft--;
-		if(timeLeft <= 0){
-			setCanBeServed(true);
-		}
-	}
+  public void minuteGoesBy() {
+    timeLeft--;
+    if (timeLeft <= 0) {
+      this.canBeServed = true;
+    }
+  }
 
-	public void setCanBeServed(boolean bool){
-		this.canBeServed = bool;
-	}
+  public boolean getCanBeServed() {
+    return canBeServed;
+  }
 
-	public boolean getCanBeServed(){
-		return canBeServed;
-	}
-
-	@Override
-	public int compareTo(Customer o) {
-		return 0;
-	}
+  @Override
+  public int compareTo(Customer o) {
+    return 0;
+  }
 }
