@@ -1,3 +1,7 @@
+package com.parisesoftware.datastructure.queue;
+
+import com.parisesoftware.model.Node;
+
 /*
  * Andrew Parise
  * 
@@ -38,11 +42,11 @@ public class MyQueueClassTest {
 		
 		//Testing .viewFirst()
 		Node firstNode = q.viewFirst();
-		System.out.println("The first node is: " + firstNode.getInfo());
+		System.out.println("The first node is: " + firstNode.getData());
 		
 		//Testing .viewLast()
 		Node lastNode = q.viewLast();
-		System.out.println("The last node is: " + lastNode.getInfo());
+		System.out.println("The last node is: " + lastNode.getData());
 		
 		//Testing to make sure it did not remove node
 		q.displayContents();
@@ -52,21 +56,21 @@ public class MyQueueClassTest {
 		q.insertElement("Morning");
 		q.displayContents();
 		firstNode = q.viewFirst();
-		System.out.println("The first node is: " + firstNode.getInfo());
+		System.out.println("The first node is: " + firstNode.getData());
 		lastNode = q.viewLast();
-		System.out.println("The last node is: " + lastNode.getInfo());
+		System.out.println("The last node is: " + lastNode.getData());
 		q.removeElement();
 		q.displayContents();
 		q.insertElement("Nothing");
 		q.displayContents();
 		firstNode = q.viewFirst();
-		System.out.println("The first node is: " + firstNode.getInfo());
+		System.out.println("The first node is: " + firstNode.getData());
 		lastNode = q.viewLast();
-		System.out.println("The last node is: " + lastNode.getInfo());
+		System.out.println("The last node is: " + lastNode.getData());
 		System.out.println("Thre are currently " + q.getSize() + " elements in the queue");
 		
 		//Testing .search()
-		System.out.println("The second node is: " + q.search(1).getInfo());
+		System.out.println("The second node is: " + q.search(1).getData());
 
 	}
 

@@ -1,4 +1,5 @@
-package com.parisesoftware.simulation;//imports
+package com.parisesoftware.simulation;
+
 import com.parisesoftware.datastructure.queue.MyQueueClass;
 import com.parisesoftware.model.Customer;
 
@@ -31,7 +32,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CustomerSimulation {
 	//init global vars
-	private MyQueueClass line;
+	private MyQueueClass<Customer> line;
 	private int numMinsRemaining;
 	private int minsUntilNextCustomer;
 
@@ -42,7 +43,7 @@ public class CustomerSimulation {
 	private int maxInt;
 	
 	public CustomerSimulation(){ //default constructor
-		line = new MyQueueClass(); //creates the queue
+		line = new MyQueueClass<Customer>(); //creates the queue
 		numMinsRemaining = 720; //12 hours
 		minsUntilNextCustomer = 0;
 		lineLength = 0;
@@ -51,7 +52,7 @@ public class CustomerSimulation {
 	}
 
 	public CustomerSimulation(int min, int max){
-		line = new MyQueueClass(); //creates the queue
+		line = new MyQueueClass<Customer>(); //creates the queue
 		numMinsRemaining = 720; //12 hours
 		minsUntilNextCustomer = 0;
 		lineLength = 0;
@@ -86,7 +87,7 @@ public class CustomerSimulation {
 		//Age customers by a minute
 		for(int i = 0; i < getLineLength() - 1; i++){
 			if(line.search(i) != null){
-				Customer curCustomer = line.search(i).getCustomer();
+				Customer curCustomer = (Customer) line.search(i).getData();
 				curCustomer.minuteGoesBy();	
 			}
 		}
@@ -94,7 +95,7 @@ public class CustomerSimulation {
 		//check customers and serve closest to front of queue who has waited long enough to be served
 		for(int i = 0; i < getLineLength() - 1; i++){
 			if(line.search(i) != null){
-				Customer curCustomer = line.search(i).getCustomer();
+				Customer curCustomer = (Customer) line.search(i).getData();
 					
 				if(curCustomer.getCanBeServed()){
 					//Customer is ready to be served

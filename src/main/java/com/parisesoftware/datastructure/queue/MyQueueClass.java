@@ -2,7 +2,6 @@ package com.parisesoftware.datastructure.queue;
 
 import com.parisesoftware.datastructure.linkedlist.ILinkedList;
 import com.parisesoftware.datastructure.linkedlist.LinkedListImpl;
-import com.parisesoftware.model.Customer;
 import com.parisesoftware.model.Node;
 
 /*
@@ -22,36 +21,32 @@ import com.parisesoftware.model.Node;
  * 
  * 
  */
-public class MyQueueClass {
+public class MyQueueClass<T extends Comparable<T>> {
 
-	private ILinkedList linkedList;
+	private ILinkedList<T> linkedList;
 
 	public MyQueueClass(){
 		//default constructor
-		linkedList = new LinkedListImpl();
+		linkedList = new LinkedListImpl<>();
 	}
 
-	public void insertElement(String info){ //"method to insert elements into the queue"
-		linkedList.insertEnd(info); //inserts node at end of linked list
+	public void insertElement(T info){ //"method to insert elements into the queue"
+		this.linkedList.insertEnd(info); //inserts node at end of linked list
 	}
 
-	public void insertElement(Customer customer){ //adds a customer object to queue
-		linkedList.insertEnd(customer);
-	}
-
-	public Node removeElement(){ //"remove elements from the queue"
+	public Node<T> removeElement(){ //"remove elements from the queue"
 		if(!isEmpty()){ //if queue is not empty
 			return linkedList.deleteHead();//removes first node and returns it
 		}
 		return null;
 	}
 
-	public Node viewFirst(){ //"look at the first element of the queue without removing the element"
+	public Node<T> viewFirst(){ //"look at the first element of the queue without removing the element"
 		//peek first element
 		return linkedList.getHead();
 	}
 
-	public Node viewLast(){ //"look at the last element of the queue without removing the element"
+	public Node<T> viewLast(){ //"look at the last element of the queue without removing the element"
 		//peek last element
 		return linkedList.getTail();
 	}
