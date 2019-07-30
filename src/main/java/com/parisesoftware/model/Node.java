@@ -35,9 +35,9 @@ public class Node<T extends Comparable<T>> {
 
     /**
      * Helper method for deletion
-     * @param data
-     * @param parent
-     * @return
+     * @param data to be removed
+     * @param parent to set
+     * @return {@code boolean}
      */
 	public boolean removeNode(T data, Node<T> parent){
 

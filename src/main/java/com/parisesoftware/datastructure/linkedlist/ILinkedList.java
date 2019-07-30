@@ -43,7 +43,7 @@ public interface ILinkedList<T extends Comparable<T>> {
 	Node<T> search(int index);
 
     /**
-     * @return true if linked list is empty, false if has > 0 nodes
+     * @return true if linked list is empty, false if has greater than 0 nodes
      */
 	boolean isEmpty();
 
