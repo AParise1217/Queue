@@ -5,79 +5,73 @@ import com.parisesoftware.datastructure.linkedlist.LinkedListImpl;
 import com.parisesoftware.model.Node;
 
 /**
- * {@inheritDoc}
+ * Default implementation of {@link IQueue}
  *
- * <p>Default implementation of {@link IQueue}
- *
- * <p>Mar 4th 2016 Assignment 5.1 Programming II
- *
- * <p>Assignment Overview: "...use the linked list created in Assignment 3.1 to create a queue class
- * and a test program that can handle this new system. The queue class must include a method to
- * insert elements into the queue, remove elements from the queue, look at the first and last
- * element of the queue without removing the elements from the queue, and search for an element in
- * the queue. Use the following algorithm to simulate a simple version of the new system."
- *
- * @author Andrew Parise
+ * @author <a href="mailto:andrewparise1994@gmail.com">Andrew Parise</a>
  * @version 1.0.1
  * @since 1.0.0
  */
 public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
 
-  private ILinkedList<T> linkedList;
+    private ILinkedList<T> linkedList;
 
-  public QueueImpl() {
-    // default constructor
-    linkedList = new LinkedListImpl<>();
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public void insertElement(T info) { // "method to insert elements into the queue"
-    this.linkedList.insertEnd(info); // inserts node at end of linked list
-  }
-
-  public Node<T> removeElement() { // "remove elements from the queue"
-    if (!isEmpty()) { // if queue is not empty
-      return linkedList.deleteHead(); // removes first node and returns it
+    public QueueImpl() {
+        // default constructor
+        this.linkedList = new LinkedListImpl<>();
     }
-    return null;
-  }
 
-  public Node<T>
-      viewFirst() { // "look at the first element of the queue without removing the element"
-    // peek first element
-    return linkedList.getHead();
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void insertElement(T info) {
+        this.linkedList.insertEnd(info);
+    }
 
-  public Node<T>
-      viewLast() { // "look at the last element of the queue without removing the element"
-    // peek last element
-    return linkedList.getTail();
-  }
+    public Node<T> removeElement() { // "remove elements from the queue"
+        if (!isEmpty()) { // if queue is not empty
+            return this.linkedList.deleteHead(); // removes first node and returns it
+        }
+        return null;
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public Node search(int index) { // "search for an element in the queue"
-    return linkedList.search(index);
-  }
+    public Node<T> viewFirst() { // "look at the first element of the queue without removing the element"
+        // peek first element
+        return this.linkedList.getHead();
+    }
 
-  public boolean isEmpty() { // checks if queue is empty
-    return linkedList.isEmpty();
-  }
+    public Node<T> viewLast() { // "look at the last element of the queue without removing the element"
+        // peek last element
+        return this.linkedList.getTail();
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public void removeElement(int index) {
-    linkedList.removeNode(index);
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Node search(int index) { // "search for an element in the queue"
+        return this.linkedList.search(index);
+    }
 
-  public int getSize() {
-    // returns the number of elements in the queue
-    return linkedList.getNumElements();
-  }
+    public boolean isEmpty() { // checks if queue is empty
+        return this.linkedList.isEmpty();
+    }
 
-  public void displayContents() { // prints contents to console
-    System.out.println("Contents of Queue: ");
-    System.out.println(linkedList.toString());
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeElement(int index) {
+        this.linkedList.removeNode(index);
+    }
+
+    public int getSize() {
+        // returns the number of elements in the queue
+        return this.linkedList.getNumElements();
+    }
+
+    public void displayContents() { // prints contents to console
+        System.out.println("Contents of Queue: ");
+        System.out.println(this.linkedList.toString());
+    }
 }
