@@ -6,10 +6,32 @@ import com.parisesoftware.model.Node;
  * Queue Abstraction
  *
  * @author <a href="mailto:andrewparise1994@gmail.com">Andrew Parise</a>
- * @version 1.0.1
+ * @version 1.0.2
  * @since 1.0.1
  */
-public interface IQueue<T extends Comparable> {
+public interface IQueue<T extends Comparable<T>> {
+
+    /**
+     * Search for an element in the queue at the given index
+     *
+     * @param index to search for the {@link Node} at
+     * @return {@code Node} at the given index
+     */
+    Node<T> search(int index);
+
+    /**
+     * Inserts the element into the queue
+     *
+     * @param info {@code T} the data to be inserted
+     */
+    void insertElement(T info);
+
+    /**
+     * Pops the first element from the queue. Returns {@code null} if the Queue is empty
+     *
+     * @return {@code Node} that is first in the queue
+     */
+    Node<T> removeElement();
 
     /**
      * Removes the element at the given index
@@ -19,18 +41,31 @@ public interface IQueue<T extends Comparable> {
     void removeElement(int index);
 
     /**
-     * Search for an element in the queue at the given index
+     * Fetch the first element of the queue without removing the element
      *
-     * @param index to search for the {@link Node} at
-     * @return {@code Node} at the given index
+     * @return {@code Node} that is first in the queue
      */
-    Node search(int index);
+    Node<T> viewFirst();
 
     /**
-     * Inserts the element into the queue
+     * Fetch the last element of the queue without removing the element
      *
-     * @param info {@code T} the data to be inserted
+     * @return {@code Node} that is the last in the queue
      */
-    void insertElement(T info);
+    Node<T> viewLast();
+
+    /**
+     * Check if the queue is empty
+     *
+     * @return {@code boolean}
+     */
+    boolean isEmpty();
+
+    /**
+     * Fetch the number of elements in the Queue
+     *
+     * @return {@code int} representation of the size of the queue
+     */
+    int getSize();
 
 }
