@@ -28,20 +28,30 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
         this.linkedList.insertEnd(info);
     }
 
-    public Node<T> removeElement() { // "remove elements from the queue"
-        if (!isEmpty()) { // if queue is not empty
-            return this.linkedList.deleteHead(); // removes first node and returns it
+    /**
+     * Pops the first element from the queue
+     * @return {@code Node} that is first in the queue
+     */
+    public Node<T> removeElement() {
+        if (!isEmpty()) {
+            return this.linkedList.deleteHead();
         }
         return null;
     }
 
-    public Node<T> viewFirst() { // "look at the first element of the queue without removing the element"
-        // peek first element
+    /**
+     * Fetch the first element of the queue without removing the element
+     * @return {@code Node} that is first in the queue
+     */
+    public Node<T> viewFirst() {
         return this.linkedList.getHead();
     }
 
-    public Node<T> viewLast() { // "look at the last element of the queue without removing the element"
-        // peek last element
+    /**
+     * Fetch the last element of the queue without removing the element
+     * @return {@code Node} that is the last in the queue
+     */
+    public Node<T> viewLast() {
         return this.linkedList.getTail();
     }
 
@@ -49,11 +59,15 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
      * {@inheritDoc}
      */
     @Override
-    public Node search(int index) { // "search for an element in the queue"
+    public Node search(int index) {
         return this.linkedList.search(index);
     }
 
-    public boolean isEmpty() { // checks if queue is empty
+    /**
+     * Check if the queue is empty
+     * @return {@code boolean}
+     */
+    public boolean isEmpty() {
         return this.linkedList.isEmpty();
     }
 
@@ -65,13 +79,21 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
         this.linkedList.removeNode(index);
     }
 
+    /**
+     * Fetch the number of elements in the Queue
+     * @return {@code int} representation of the size of the queue
+     */
     public int getSize() {
         // returns the number of elements in the queue
         return this.linkedList.getNumElements();
     }
 
-    public void displayContents() { // prints contents to console
+    /**
+     * Prints the contents of the queue to the console
+     */
+    public void displayContents() {
         System.out.println("Contents of Queue: ");
         System.out.println(this.linkedList.toString());
     }
+
 }
