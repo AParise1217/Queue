@@ -8,7 +8,7 @@ import com.parisesoftware.model.Node;
  * Default implementation of {@link IQueue}
  *
  * @author <a href="mailto:andrewparise1994@gmail.com">Andrew Parise</a>
- * @version 1.0.1
+ * @version 1.0.2
  * @since 1.0.0
  */
 public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
@@ -29,28 +29,29 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
     }
 
     /**
-     * Pops the first element from the queue
-     * @return {@code Node} that is first in the queue
+     * {@inheritDoc}
      */
+    @Override
     public Node<T> removeElement() {
-        if (!isEmpty()) {
-            return this.linkedList.deleteHead();
+        if (isEmpty()) {
+            return null;
         }
-        return null;
+
+        return this.linkedList.deleteHead();
     }
 
     /**
-     * Fetch the first element of the queue without removing the element
-     * @return {@code Node} that is first in the queue
+     * {@inheritDoc}
      */
+    @Override
     public Node<T> viewFirst() {
         return this.linkedList.getHead();
     }
 
     /**
-     * Fetch the last element of the queue without removing the element
-     * @return {@code Node} that is the last in the queue
+     * {@inheritDoc}
      */
+    @Override
     public Node<T> viewLast() {
         return this.linkedList.getTail();
     }
@@ -59,14 +60,14 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
      * {@inheritDoc}
      */
     @Override
-    public Node search(int index) {
+    public Node<T> search(int index) {
         return this.linkedList.search(index);
     }
 
     /**
-     * Check if the queue is empty
-     * @return {@code boolean}
+     * {@inheritDoc}
      */
+    @Override
     public boolean isEmpty() {
         return this.linkedList.isEmpty();
     }
@@ -80,9 +81,9 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
     }
 
     /**
-     * Fetch the number of elements in the Queue
-     * @return {@code int} representation of the size of the queue
+     * {@inheritDoc}
      */
+    @Override
     public int getSize() {
         // returns the number of elements in the queue
         return this.linkedList.getNumElements();
