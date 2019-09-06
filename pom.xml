@@ -5,7 +5,7 @@
 
     <artifactId>queue</artifactId>
     <groupId>com.parisesoftware</groupId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <name>Queue Data Structure</name>
     <description>Queue Data Structure Implementation</description>
     <packaging>jar</packaging>
@@ -24,7 +24,7 @@
         <connection>scm:git:git://github.com/AParise1217/queue.git</connection>
         <developerConnection>scm:git:git@github.com:AParise1217/queue.git</developerConnection>
         <url>https://github.com/AParise1217/queue</url>
-        <tag>queue-1.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
