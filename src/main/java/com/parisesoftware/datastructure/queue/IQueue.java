@@ -28,6 +28,8 @@ public interface IQueue<T extends Comparable> {
 
     /**
      * Inserts the element into the queue
+     *
+     * @param info {@code T} the data to be inserted
      */
     void insertElement(T info);
 
