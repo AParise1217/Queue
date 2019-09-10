@@ -1,5 +1,9 @@
 # Queue
-JAVA implementation of the queue data structure.
+JAVA implementation of the queue data structure. 
+The Queue is implemented using a LinkedList, which 
+is also an open source package written by me, and available 
+[here](https://github.com/AParise1217/LinkedList).
+
 
 # Releasing to Maven Central
 ## Performing a Release Deployment
