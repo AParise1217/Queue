@@ -3,13 +3,18 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>queue</artifactId>
+    <artifactId>queue-parent</artifactId>
     <groupId>com.parisesoftware</groupId>
     <version>1.0.3-SNAPSHOT</version>
-    <name>Queue Data Structure</name>
-    <description>Queue Data Structure Implementation</description>
-    <packaging>jar</packaging>
+    <name>Queue :: Parent Pom</name>
+    <description>Parent POM to the Queue Data Structure Package</description>
+    <packaging>pom</packaging>
     <url>https://github.com/AParise1217/queue</url>
+
+    <modules>
+        <module>queue</module>
+        <module>queue-example</module>
+    </modules>
 
     <developers>
         <developer>
@@ -64,8 +69,8 @@
 
     <build>
 
-        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
 
         <plugins>
             <plugin>
@@ -199,16 +204,10 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.parisesoftware</groupId>
-            <artifactId>linkedlist</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations-java5</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -225,12 +224,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>
