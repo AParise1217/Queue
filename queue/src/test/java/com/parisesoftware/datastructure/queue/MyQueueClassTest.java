@@ -1,18 +1,24 @@
 package com.parisesoftware.datastructure.queue;
 
-import com.parisesoftware.model.INode;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.TypeLiteral;
+import com.parisesoftware.datastructure.queue.factory.IQueueFactory;
 
 /**
- * Andrew Parise
- * <p>
- * Mar 4th 2016
- * <p>
- * Test class to make sure that {@link QueueImpl} functionality is working
+ * Example Usage of the Queue Data Structure
  */
 public class MyQueueClassTest {
 
     public static void main(String[] args) {
-        QueueImpl q = new QueueImpl();
+
+        Injector injector = Guice.createInjector(new StringQueueTestModule());
+
+        IQueueFactory<String> queueFactory = injector.getInstance(Key.get(new TypeLiteral<IQueueFactory<String>>() {}));
+
+        // unbox from abstraction
+        QueueImpl<String> q = (QueueImpl<String>) queueFactory.createQueue();
 
         //Testing .isEmpty()
         if (q.isEmpty()) {
@@ -40,36 +46,36 @@ public class MyQueueClassTest {
         System.out.println("There are currently " + q.getSize() + " elements in the queue");
 
         //Testing .viewFirst()
-        INode firstNode = q.viewFirst();
-        System.out.println("The first node is: " + firstNode.getData());
+        q.viewFirst().ifPresent(stringINode -> System.out.println("The first node is: " + stringINode.getData()));
 
         //Testing .viewLast()
-        INode lastNode = q.viewLast();
-        System.out.println("The last node is: " + lastNode.getData());
+        q.viewLast().ifPresent(stringINode -> System.out.println("The last node is: " + stringINode.getData()));
 
         //Testing to make sure it did not remove node
         q.displayContents();
 
-
         //More Tests just to be sure
         q.insertElement("Morning");
         q.displayContents();
-        firstNode = q.viewFirst();
-        System.out.println("The first node is: " + firstNode.getData());
-        lastNode = q.viewLast();
-        System.out.println("The last node is: " + lastNode.getData());
+
+        q.viewFirst().ifPresent(stringINode -> System.out.println("The first node is: " + stringINode.getData()));
+
+        q.viewLast().ifPresent(stringINode -> System.out.println("The last node is: " + stringINode.getData()));
+
         q.removeElement();
+
         q.displayContents();
         q.insertElement("Nothing");
+
         q.displayContents();
-        firstNode = q.viewFirst();
-        System.out.println("The first node is: " + firstNode.getData());
-        lastNode = q.viewLast();
-        System.out.println("The last node is: " + lastNode.getData());
+        q.viewFirst().ifPresent(stringINode -> System.out.println("The first node is: " + stringINode.getData()));
+
+        q.viewLast().ifPresent(stringINode -> System.out.println("The last node is: " + stringINode.getData()));
+
         System.out.println("Thre are currently " + q.getSize() + " elements in the queue");
 
         //Testing .search()
-        System.out.println("The second node is: " + q.search(1).getData());
+        q.search(1).ifPresent(stringINode -> System.out.println("The second node is: " + stringINode.getData()));
 
     }
 

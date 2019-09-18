@@ -1,9 +1,12 @@
 package com.parisesoftware.datastructure.simulation;
 
+import com.google.inject.Inject;
 import com.parisesoftware.datastructure.model.Customer;
 import com.parisesoftware.datastructure.queue.IQueue;
-import com.parisesoftware.datastructure.queue.QueueImpl;
+import com.parisesoftware.datastructure.queue.factory.IQueueFactory;
+import com.parisesoftware.model.INode;
 
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -20,7 +23,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * customers in the checkout line against the original 12 hour simulation.
  *
  * @author <a href="mailto:andrewparise1994@gmail.com">Andrew Parise</a>
- * @version 1.0.1
+ * @version 1.0.4
  * @since 1.0.0
  */
 public class CustomerSimulation {
@@ -38,8 +41,10 @@ public class CustomerSimulation {
 
     private int maxInt;
 
-    public CustomerSimulation() { // default constructor
-        this.line = new QueueImpl<>(); // creates the queue
+    @Inject
+    public CustomerSimulation(IQueueFactory<Customer> queueFactory) {
+        this.line = queueFactory.createQueue();
+
         this.numMinsRemaining = 720; // 12 hours
         this.minsUntilNextCustomer = 0;
         this.lineLength = 0;
@@ -47,8 +52,10 @@ public class CustomerSimulation {
         this.maxInt = 5;
     }
 
-    public CustomerSimulation(int min, int max) {
-        this.line = new QueueImpl<>(); // creates the queue
+    @Inject
+    public CustomerSimulation(IQueueFactory<Customer> queueFactory, int min, int max) {
+        this.line = queueFactory.createQueue();
+
         this.numMinsRemaining = 720; // 12 hours
         this.minsUntilNextCustomer = 0;
         this.lineLength = 0;
@@ -107,16 +114,20 @@ public class CustomerSimulation {
 
         // Age customers by a minute
         for (int i = 0; i < getLineLength() - 1; i++) {
-            if (line.search(i) != null) {
-                Customer curCustomer = line.search(i).getData();
+
+            Optional<INode<Customer>> optionalCurCustomer = this.line.search(i);
+            if (optionalCurCustomer.isPresent()) {
+                Customer curCustomer = optionalCurCustomer.get().getData();
                 curCustomer.minuteGoesBy();
             }
         }
 
         // check customers and serve closest to front of queue who has waited long enough to be served
         for (int i = 0; i < getLineLength() - 1; i++) {
-            if (this.line.search(i) != null) {
-                Customer curCustomer = this.line.search(i).getData();
+
+            Optional<INode<Customer>> optionalCurCustomer = this.line.search(i);
+            if (optionalCurCustomer.isPresent()) {
+                Customer curCustomer = optionalCurCustomer.get().getData();
 
                 if (curCustomer.getCanBeServed()) {
                     // Customer is ready to be served

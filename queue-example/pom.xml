@@ -18,9 +18,15 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.parisesoftware</groupId>
             <artifactId>queue</artifactId>
-            <version>1.0.4-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

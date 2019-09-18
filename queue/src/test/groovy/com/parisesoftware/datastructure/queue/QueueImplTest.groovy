@@ -1,41 +1,49 @@
 package com.parisesoftware.datastructure.queue
 
+import com.google.inject.Inject
+import com.parisesoftware.datastructure.queue.factory.IQueueFactory
 import com.parisesoftware.model.INode
+import spock.guice.UseModules
 import spock.lang.Specification
 
+@UseModules(StringQueueTestModule)
 class QueueImplTest extends Specification {
+
+    @Inject
+    IQueueFactory<String> queueFactory
+
+    QueueImpl getQueue() {
+        return this.queueFactory.createQueue() as QueueImpl
+    }
 
     def "isEmpty(): should return true immediately following construction"() {
 
-        given: 'a Queue instance'
-        final QueueImpl testQueue = new QueueImpl()
-
         when: "the Queue is queried for if it is Empty"
-        final boolean resultant = testQueue.isEmpty()
+        final boolean resultant = getQueue().isEmpty()
 
         then: "the resultant boolean is true"
         resultant
     }
 
-    def "removeElement(): should return null when the Queue is empty"() {
+    def "removeElement(): should return a not present Optional when the Queue is empty"() {
 
         given: 'a Queue instance'
-        final QueueImpl testQueue = new QueueImpl()
+        final QueueImpl testQueue = getQueue()
 
         when: 'the Queue is queried to remove an element'
-        final INode resultant = testQueue.removeElement()
+        final Optional<INode> resultant = testQueue.removeElement()
 
         then: "Sanity Check: the Queue is verified to be Empty"
         testQueue.isEmpty()
 
-        and: "the resultant Node is null"
-        resultant == null
+        and: "the resultant Node is not present"
+        !resultant.isPresent()
     }
 
     def "removeElement(): should not throw a NPE when queried with an out of bounds index"() {
 
         given: 'a Queue instance'
-        final QueueImpl testQueue = new QueueImpl()
+        final QueueImpl testQueue = getQueue()
 
         and: 'an out of bounds index'
         final int outOfBoundsIndex = 500

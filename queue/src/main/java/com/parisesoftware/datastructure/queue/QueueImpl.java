@@ -1,23 +1,26 @@
 package com.parisesoftware.datastructure.queue;
 
+import com.google.inject.Inject;
 import com.parisesoftware.datastructure.linkedlist.ILinkedList;
-import com.parisesoftware.datastructure.linkedlist.LinkedListImpl;
+import com.parisesoftware.datastructure.linkedlist.factory.ILinkedListFactory;
 import com.parisesoftware.model.INode;
+
+import java.util.Optional;
 
 /**
  * Default implementation of {@link IQueue}
  *
  * @author <a href="mailto:andrewparise1994@gmail.com">Andrew Parise</a>
- * @version 1.0.3
+ * @version 1.0.4
  * @since 1.0.0
  */
 public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
 
     private ILinkedList<T> linkedList;
 
-    public QueueImpl() {
-        // default constructor
-        this.linkedList = new LinkedListImpl<>();
+    @Inject
+    public QueueImpl(ILinkedListFactory<T> linkedListFactory) {
+        this.linkedList = linkedListFactory.createLinkedList();
     }
 
     /**
@@ -32,9 +35,9 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
      * {@inheritDoc}
      */
     @Override
-    public INode<T> removeElement() {
+    public Optional<INode<T>>removeElement() {
         if (isEmpty()) {
-            return null;
+            return Optional.empty();
         }
 
         return this.linkedList.deleteHead();
@@ -44,7 +47,7 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
      * {@inheritDoc}
      */
     @Override
-    public INode<T> viewFirst() {
+    public Optional<INode<T>> viewFirst() {
         return this.linkedList.getHead();
     }
 
@@ -52,7 +55,7 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
      * {@inheritDoc}
      */
     @Override
-    public INode<T> viewLast() {
+    public Optional<INode<T>> viewLast() {
         return this.linkedList.getTail();
     }
 
@@ -60,7 +63,7 @@ public class QueueImpl<T extends Comparable<T>> implements IQueue<T> {
      * {@inheritDoc}
      */
     @Override
-    public INode<T> search(int index) {
+    public Optional<INode<T>> search(int index) {
         return this.linkedList.search(index);
     }
 
