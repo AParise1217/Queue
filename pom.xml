@@ -65,6 +65,7 @@
 
         <junit.version>4.11</junit.version>
         <spock.version>1.0-groovy-2.4</spock.version>
+        <guice.version>4.1.0</guice.version>
     </properties>
 
     <build>

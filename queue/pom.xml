@@ -16,11 +16,16 @@
     </parent>
 
     <properties>
-        <parisesoftware-linkedlist.version>1.0.3</parisesoftware-linkedlist.version>
+        <parisesoftware-linkedlist.version>1.0.6</parisesoftware-linkedlist.version>
     </properties>
 
-
     <dependencies>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.parisesoftware</groupId>
@@ -33,6 +38,13 @@
             <artifactId>annotations-java5</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-guice</artifactId>
+            <version>${spock.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

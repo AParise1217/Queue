@@ -2,11 +2,13 @@ package com.parisesoftware.datastructure.queue;
 
 import com.parisesoftware.model.INode;
 
+import java.util.Optional;
+
 /**
  * Queue Abstraction
  *
  * @author <a href="mailto:andrewparise1994@gmail.com">Andrew Parise</a>
- * @version 1.0.3
+ * @version 1.0.4
  * @since 1.0.1
  */
 public interface IQueue<T extends Comparable<T>> {
@@ -15,9 +17,9 @@ public interface IQueue<T extends Comparable<T>> {
      * Search for an element in the queue at the given index
      *
      * @param index to search for the {@link INode} at
-     * @return {@code INode} at the given index
+     * @return {@code Optional} {@link INode} at the given index
      */
-    INode<T> search(int index);
+    Optional<INode<T>> search(int index);
 
     /**
      * Inserts the element into the queue
@@ -29,9 +31,9 @@ public interface IQueue<T extends Comparable<T>> {
     /**
      * Pops the first element from the queue. Returns {@code null} if the Queue is empty
      *
-     * @return {@code INode} that is first in the queue
+     * @return {@code Optional} {@link INode} that is first in the queue
      */
-    INode<T> removeElement();
+    Optional<INode<T>> removeElement();
 
     /**
      * Removes the element at the given index
@@ -43,16 +45,16 @@ public interface IQueue<T extends Comparable<T>> {
     /**
      * Fetch the first element of the queue without removing the element
      *
-     * @return {@code INode} that is first in the queue
+     * @return {@code Optional} {@link INode} that is first in the queue
      */
-    INode<T> viewFirst();
+    Optional<INode<T>> viewFirst();
 
     /**
      * Fetch the last element of the queue without removing the element
      *
-     * @return {@code INode} that is the last in the queue
+     * @return {@code Optional} {@link INode} that is the last in the queue
      */
-    INode<T> viewLast();
+    Optional<INode<T>> viewLast();
 
     /**
      * Check if the queue is empty
